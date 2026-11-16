@@ -11,6 +11,8 @@ concurrency:
 
 jobs:
   tag:
+    # Without the registry variables there is nowhere to release to: skip rather than fail.
+    if: vars.REFERENCE_REGISTRY != '' && vars.RELEASE_REGISTRY != ''
     uses: Start9Labs/start-technologies/.github/workflows/tagAndRelease.yml@master
     with:
       REFERENCE_REGISTRY: ${{ vars.REFERENCE_REGISTRY }}
