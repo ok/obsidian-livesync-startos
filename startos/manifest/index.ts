@@ -17,7 +17,7 @@ export const manifest = setupManifest({
       arch: ['x86_64', 'aarch64'],
     },
     cli: {
-      source: { dockerTag: 'ghcr.io/vrtmrz/livesync-cli:1.0.50-cli' },
+      source: { dockerTag: 'ghcr.io/vrtmrz/livesync-cli:1.0.52-cli' },
       arch: ['x86_64', 'aarch64'],
     },
     setup: {
