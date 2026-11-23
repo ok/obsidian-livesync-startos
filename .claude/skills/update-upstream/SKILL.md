@@ -168,7 +168,7 @@ signed the release, and offer the three ways on: add that key to Trusted Keys on
 update from the StartOS UI and confirm the warning there, or the user running the
 install with `--trust` themselves.
 
-The signer is the key CI packs with, the repo's `DEV_KEY` secret. Since 1.0.52:0 that
+The signer is the key CI packs with, the repo's `DEV_KEY` secret. For every release after 1.0.52:0 that
 is the key shared with `mirall-relay-startos`, registered on the registry as
 `mirall-relay CI`: `MCowBQYDK2VwAyEAHZRC+20XBAnpLPN3Tp+8d6keBnGPUwsPbKP5mrzJ39s=`
 (private half: `~/.startos/ci-mirall-relay.key.pem`). 1.0.50:0 and 1.0.52:0 themselves
