@@ -170,7 +170,7 @@ install with `--trust` themselves.
 
 The signer is the key CI packs with, the repo's `DEV_KEY` secret. For every release after 1.0.52:0 that
 is the key shared with `mirall-relay-startos`, registered on the registry as
-`mirall-relay CI`: `MCowBQYDK2VwAyEAHZRC+20XBAnpLPN3Tp+8d6keBnGPUwsPbKP5mrzJ39s=`
+`zsapping.net registry signing`, the signer the registry offers to servers that connect it: `MCowBQYDK2VwAyEAHZRC+20XBAnpLPN3Tp+8d6keBnGPUwsPbKP5mrzJ39s=`
 (private half: `~/.startos/ci-mirall-relay.key.pem`). 1.0.50:0 and 1.0.52:0 themselves
 carry an older key that no longer exists anywhere. It is not `start-cli pubkey` (the
 start-cli identity, which administers the registry) and not the workspace's
