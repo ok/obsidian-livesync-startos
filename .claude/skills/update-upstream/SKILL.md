@@ -168,10 +168,13 @@ signed the release, and offer the three ways on: add that key to Trusted Keys on
 update from the StartOS UI and confirm the warning there, or the user running the
 install with `--trust` themselves.
 
-The signer is the key CI packs with, the repo's `DEV_KEY` secret:
-`MCowBQYDK2VwAyEAPAZLdooo234eY/vaNnxwOoGdahnblgDfNAwxQ0aM7S0=`. It is no key on this
-machine — not `start-cli pubkey` (the start-cli identity, which only co-signs the
-registry entry) and not the workspace's `.startos/build.key.pem`. To confirm it is
+The signer is the key CI packs with, the repo's `DEV_KEY` secret. Since 1.0.52:0 that
+is the key shared with `mirall-relay-startos`, registered on the registry as
+`mirall-relay CI`: `MCowBQYDK2VwAyEAHZRC+20XBAnpLPN3Tp+8d6keBnGPUwsPbKP5mrzJ39s=`
+(private half: `~/.startos/ci-mirall-relay.key.pem`). 1.0.50:0 and 1.0.52:0 themselves
+carry an older key that no longer exists anywhere. It is not `start-cli pubkey` (the
+start-cli identity, which administers the registry) and not the workspace's
+`.startos/build.key.pem`. To confirm it is
 still the one, look for its last 32 bytes in the head of the released package:
 
 ```bash
