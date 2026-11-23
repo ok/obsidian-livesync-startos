@@ -159,8 +159,30 @@ end without asking again, unless a check fails or something contradicts what was
 ## 6. Update the box and verify
 
 The box takes the package from the registry: `start-cli package install
-obsidian-livesync <new>:0`, or the update offered in the StartOS UI. Give the service a
-minute, then verify against the running service — an install that succeeded is not a
+obsidian-livesync <new>:0`, or the update offered in the StartOS UI.
+
+If the install answers `Invalid Signature: … Signer(s) not accepted`, the box does not
+list the release's signing key under **System → Trusted Keys**. Do not add `--trust`
+on your own: whether the box trusts a key is the user's decision. Stop, say which key
+signed the release, and offer the three ways on: add that key to Trusted Keys once,
+update from the StartOS UI and confirm the warning there, or the user running the
+install with `--trust` themselves.
+
+The signer is the key CI packs with, the repo's `DEV_KEY` secret. For every release after 1.0.52:0 that
+is the key shared with `mirall-relay-startos`, registered on the registry as
+`zsapping.net registry signing`, the signer the registry offers to servers that connect it: `MCowBQYDK2VwAyEAHZRC+20XBAnpLPN3Tp+8d6keBnGPUwsPbKP5mrzJ39s=`
+(private half: `~/.startos/ci-mirall-relay.key.pem`). 1.0.50:0 and 1.0.52:0 themselves
+carry an older key that no longer exists anywhere. It is not `start-cli pubkey` (the
+start-cli identity, which administers the registry) and not the workspace's
+`.startos/build.key.pem`. To confirm it is
+still the one, look for its last 32 bytes in the head of the released package:
+
+```bash
+curl -fsSL -r 0-255 https://github.com/ok/obsidian-livesync-startos/releases/download/v<new>_0/obsidian-livesync_x86_64.s9pk | xxd -p | tr -d '\n' \
+  | grep -c "$(echo '<base64 key>' | base64 -d | tail -c 32 | xxd -p | tr -d '\n')"
+```
+
+Give the service a minute, then verify against the running service — an install that succeeded is not a
 service that works:
 
 - `start-cli package installed-version obsidian-livesync` is `"<new>:0"`.
